@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: medeiros-agendador-whatsapp
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: TZ
+        value: America/Sao_Paulo
+      - key: MAX_MESSAGES_PER_DAY
+        value: "10"
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: medeiros-whatsapp-data
+      mountPath: /var/data
+      sizeGB: 1
